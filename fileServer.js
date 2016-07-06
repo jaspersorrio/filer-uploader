@@ -4,6 +4,9 @@ var upload = multer({ dest: 'uploads/' });
 var spawn = require('child_process').spawn;
 var app = express();
 app.use('/', upload.any(), function (req, res) {
+    if (req.files === undefined) {
+        return res.send(404);
+    }
     console.log(req.files);
     var rename = spawn('mv', [
         './' + req.files[0].path,
