@@ -27,15 +27,15 @@ app.use('/', upload.any(), function(req, res){
   ]);
 
 
-  rename.stdout.on('data', (data) => {
+  rename.stdout.on('data', function (data) {
     console.log(`stdout: ${data}`);
   });
 
-  rename.stderr.on('data', (data) => {
+  rename.stderr.on('data', function (data) {
     console.log(`stderr: ${data}`);
   });
 
-  rename.on('close', (code) => {
+  rename.on('close', function (code) {
     // curl to internet
     var dataOut = '';
     var curl = spawn('curl', [
@@ -46,16 +46,16 @@ app.use('/', upload.any(), function(req, res){
       'https://api.pastec.io/indexes/djzatagplyaayvegejmh/searcher'
     ]);
 
-    curl.stdout.on('data', (data) => {
+    curl.stdout.on('data', function (data) {
       dataOut += data;
       console.log(`stdout: ${data}`);
     });
 
-    curl.stderr.on('data', (data) => {
+    curl.stderr.on('data', function (data) {
       console.log(`stderr: ${data}`);
     });
 
-    curl.on('close', (code) => {
+    curl.on('close', function (code) {
       res.json(dataOut);
       console.log(`child process exited with code ${code}`);
     });
