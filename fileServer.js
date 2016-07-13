@@ -22,10 +22,10 @@ app.use('/', upload.any(), function (req, res) {
         var dataOut = '';
         var curl = spawn('curl', [
             '--header',
-            'AuthKey: 04e35452d39e474ca120',
+            'AuthKey: 12c6ae2b1dfd16038fc2',
             '-X', 'POST',
             '--data-binary', '@./' + req.files[0].path + '.jpg',
-            'https://api.pastec.io/indexes/djzatagplyaayvegejmh/searcher'
+            'https://api.pastec.io/indexes/vygfzrfgnqjwmmzzcvae/searcher'
         ]);
         curl.stdout.on('data', function (data) {
             dataOut += data;
